@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <% const month = ["January","February","March","April","May","June",
+    "July","August","September","October","November","December"];
+    const d = new Date();
+    let name = month[d.getMonth()];
+    let day = d.getDate();
+    let year = d.getFullYear();%>
+
+    <h1><%= name %> <%= day %>, <%= year %></h1>
+</body>
+</html>

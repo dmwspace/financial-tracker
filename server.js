@@ -9,6 +9,8 @@ const session = require('express-session');
 const passport = require('passport');
 const methodOverride = require('method-override');
 const indexRoutes = require('./routes/index');
+const transactionRoutes = require('./routes/transactions');
+const failureRoutes = require('./routes/failure');
 
 
 // create the Express app
@@ -33,7 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // mount the session middleware
 app.use(session({
-  secret: process.env.SECRET,
+  secret: process.env.GOOGLE_SECRET,
   resave: false,
   saveUninitialized: true
 }));
@@ -44,6 +46,7 @@ app.use(passport.session());
 
 // Add this middleware BELOW passport middleware
 app.use(function (req, res, next) {
+  console.log(req.user)
   res.locals.user = req.user; // assinging a property to res.locals, makes that said property (user) availiable in every
   // single ejs view
   next();
@@ -51,11 +54,19 @@ app.use(function (req, res, next) {
 
 // mount all routes with appropriate base paths
 app.use('/', indexRoutes);
-
+app.use('/transactions', transactionRoutes);
+//app.use('/', failureRoutes);
 
 // invalid request, send 404 page
-app.use(function(req, res) {
-  res.status(404).send('Cant find that!');
+app.use(function(err, req, res, next) {
+  console.log(err);
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('index');
 });
 
 module.exports = app;
