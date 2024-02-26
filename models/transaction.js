@@ -8,9 +8,11 @@ const transactionSchema = new Schema({
         default: Date.now
     },
     type: {
+        type: String,
         enum: ['Debit', 'Credit']
     },
     category: {
+        type: String,
         enum: ['Housing', 'Food', 'Bills', 'Other Debit', 'Paycheck', 'Other Credit']
     },
     amount: Number,

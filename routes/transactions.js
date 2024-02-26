@@ -1,9 +1,17 @@
 const router = require('express').Router();
 const passport = require('passport');
+const transactionsCtrl = require('../controllers/transactions')
 
-router.get('/', function(req, res) {
-    console.log(req.user)
-    res.render('transactions')
+router.get('/', transactionsCtrl.index)
+// router.get('/', function(req, res){
+//     //console.log('*****', res)
+//     res.render('add')
+// })
+
+router.get('/new', function(req, res){
+    //console.log('*****', res)
+    res.render('new')
 })
+router.post('/', transactionsCtrl.create)
 
 module.exports = router;

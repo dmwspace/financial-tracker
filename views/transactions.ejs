@@ -16,9 +16,37 @@ let year = d.getFullYear();%>
 <body>
         <nav class="navbar bg-light">
             <h4><%= mon %> <%= day %>, <%= year %></h4>
-            <h4><a href="/add">Add Transaction</h4>
+            <h4><a href="/transactions/new">New Transaction</h4>
             <h4><a href="/">Logout</a></h4>
         </nav>
+        <% if (transactions) { %>
+            <table class="table table-bordered table-small">
+                <thead>
+                    <tr>
+                        <th scope="col">Transaction</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+            <% transactions.forEach(transaction => { 
+            let theDate = transaction.date.toLocaleDateString("en-US") %>
+                <tbody>
+                    <tr>
+                        <td><%= transaction.name %></td>
+                        <td><%= theDate %></td>
+                        <td><%= transaction.type %></td>
+                        <td><%= transaction.category %></td>
+                        <td>$<%= transaction.amount %></td>               
+                    </tr>
+                </tbody>
+            
+        <% }) %>
+            </table>
+        <% } else { %>
+            <h2>No transactions added</h2>
+        <% } %>
 
 </body>
 </html>
