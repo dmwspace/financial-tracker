@@ -37,6 +37,7 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(async function(userId, cb) {
   try {
     const userDoc = await UserModel.findById(userId)
+    console.log('userDoc passportjs line 40: ', userDoc)
     cb(null, userDoc);
   } catch(err) {
     cb(err)

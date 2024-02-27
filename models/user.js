@@ -10,10 +10,6 @@ const userSchema = new mongoose.Schema({
     }, 
     email: String,
     avatar: String,
-    transactions: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Transaction'
-    }],
     }, {
         timestamps: true
 });

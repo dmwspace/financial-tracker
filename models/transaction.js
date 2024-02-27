@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
+
+const commentSchema = new Schema({
+    content: String
+}, {
+    timestamps: true
+})
+
 const transactionSchema = new Schema({
     name: String,
     date: {
@@ -16,14 +23,11 @@ const transactionSchema = new Schema({
         enum: ['Housing', 'Food', 'Bills', 'Other Debit', 'Paycheck', 'Other Credit']
     },
     amount: Number,
-    comments: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Comment'
-    }],
-    user: [{
+    comments: [commentSchema],
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }
 }, {
     timestamps: true
 })

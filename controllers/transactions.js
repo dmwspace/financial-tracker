@@ -8,10 +8,13 @@ module.exports = {
 
 async function create(req, res) {
     try {
-        console.log('req.body: ', req.body)
+        console.log('create function req', req.user)
+        req.body.user = req.user
+		//req.body.userName = req.user.name
+		//req.body.userAvatar = req.user.avatar
+        console.log('req.body create function: ', req.body.user)
         const transactionFromDatabase = await TransactionModel.create(req.body);
-        const transactions = await TransactionModel.find({})
-        console.log(transactionFromDatabase)
+        console.log('transactionFromDatabase', transactionFromDatabase)
         res.redirect("/transactions")
     } catch(err) {
         console.log(err)
@@ -21,7 +24,7 @@ async function create(req, res) {
 
 async function index(req, res) {
     try {
-        const transactions = await TransactionModel.find({});
+        const transactions = await TransactionModel.find({user: req.user._id});
         res.render("transactions", {transactions})
     } catch(err) {
         console.log(err);
