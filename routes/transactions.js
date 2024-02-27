@@ -13,5 +13,6 @@ router.get('/new', function(req, res){
     res.render('new')
 })
 router.post('/', transactionsCtrl.create)
+router.delete('/:id', transactionsCtrl.delete)
 
 module.exports = router;

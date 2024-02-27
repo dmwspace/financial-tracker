@@ -2,7 +2,8 @@ const TransactionModel = require('../models/transaction')
 
 module.exports = {
     create,
-    index
+    index,
+    delete: deleteOne
 }
 
 async function create(req, res) {
@@ -27,4 +28,18 @@ async function index(req, res) {
         res.send(err)
     }
 
+}
+
+async function deleteOne(req, res) {
+    console.log('req.params.id: ', req.params.id)
+    try {
+        const transactionDoc = await TransactionModel.findOneAndDelete({'_id': req.params.id})
+        console.log('transactionDoc:', transactionDoc)
+        if (!transactionDoc) return res.redirect('/transactions')
+        //transactionDoc.save()
+        res.redirect('/transactions')
+    } catch(err) {
+        console.log(err);
+        res.send(err)
+    }
 }
