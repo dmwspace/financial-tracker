@@ -13,12 +13,14 @@ async function(accessToken, refreshToken, profile, cb) {
   console.log('oauth');  
   // a user has logged in via OAuth!
     // refer to the lesson plan from earlier today in order to set this up
+    // console.log('passportjs line 16 profile: ', profile)
     let user = await UserModel.findOne({googleId: profile.id});
     if (user) return cb(null, user)
+    
     try {
       user = await UserModel.create({
         name: profile.displayName,
-        googeId: profile.id,
+        googleId: profile.id,
         email: profile.emails[0].value,
         avatar: profile.photos[0].value
       })
@@ -37,7 +39,6 @@ passport.serializeUser(function(user, cb) {
 passport.deserializeUser(async function(userId, cb) {
   try {
     const userDoc = await UserModel.findById(userId)
-    console.log('userDoc passportjs line 40: ', userDoc)
     cb(null, userDoc);
   } catch(err) {
     cb(err)

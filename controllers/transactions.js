@@ -24,7 +24,8 @@ async function create(req, res) {
 
 async function index(req, res) {
     try {
-        const transactions = await TransactionModel.find({user: req.user._id});
+        const transactions = await TransactionModel.find({user: req.user});
+        console.log('transactions', transactions)
         res.render("transactions", {transactions})
     } catch(err) {
         console.log(err);
