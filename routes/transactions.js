@@ -10,7 +10,7 @@ router.get('/', transactionsCtrl.index)
 
 router.get('/new', function(req, res){
     //console.log('*****', res)
-    res.render('new')
+    res.render('transactions/new')
 })
 router.post('/', transactionsCtrl.create)
 router.delete('/:id', transactionsCtrl.delete)

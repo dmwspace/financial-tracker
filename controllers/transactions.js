@@ -26,7 +26,7 @@ async function index(req, res) {
     try {
         const transactions = await TransactionModel.find({user: req.user});
         console.log('transactions', transactions)
-        res.render("transactions", {transactions})
+        res.render("transactions/transactions", {transactions})
     } catch(err) {
         console.log(err);
         res.send(err)

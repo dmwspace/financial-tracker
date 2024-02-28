@@ -9,8 +9,8 @@
 <body>
     <div class="card bg-info mx-auto" style="width: 18rem; margin-top: 2rem">
         <div class="card-body">
-            <form action="/transactions" method="POST">
-                <textarea autofocus class="form-control" rows="3" placeholder="Add comment here"></textarea>
+            <form action="/transactions/<%= commentId %>/comments" id="add-comment-form" method="POST">
+                <input type="text" autofocus class="form-control" rows="3" placeholder="Add comment here" name="content"></input>
                 <button type="submit" class="btn-dark">Submit</button>
             </form>
         </div>
