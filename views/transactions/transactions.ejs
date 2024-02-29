@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transactions</title>
 </head>
+<% if (user) { %>
 <nav class="navbar bg-dark w-auto p-3">
     <h4 class="text-light">Hello <%= firstName %></h4>
     <h4 class="text-light"><%= currentDate %></h4>
     <h4><a href="/transactions/new">New Transaction</h4>
     <h4><a href="/">Logout</a></h4>
 </nav>
-<% if (user) { %>
 <body class="container">
     <div>
         <% if (transactions.length) { %>
@@ -80,6 +80,10 @@
                     <h2 class="card-title">Total: <%= totalAmount %></h2>
                     <p class="card-text">Total credits: <%= totalCredits %></p>
                     <p class="card-text">Total debits: <%= totalDebits %></p>
+                    <form action="/transactions/deleteAll?_method=DELETE" method="POST">
+                        <button class="btn btn-dark">Delete All</button>
+                    </form>
+                    
                 </div>
             </div>      
         </div>

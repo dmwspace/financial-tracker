@@ -5,7 +5,8 @@ module.exports = {
     index,
     delete: deleteOne,
     showUpdatePage,
-    update
+    update,
+    deleteAll
 }
 
 function getCurrentMonth() {
@@ -46,7 +47,6 @@ async function index(req, res) {
         const transactions = await TransactionModel.find({user: req.user});
         let firstName = getFirstName(req.user.name)
         let currentDate = getCurrentMonth()
-        console.log('transactions at index function', transactions)
         let amount = 0
         let credits = 0
         let debits = 0
@@ -104,6 +104,17 @@ async function update(req, res) {
             {new: true}
         );
         return res.redirect('/transactions')
+    } catch(err) {
+        console.log(err)
+        res.send(err)
+    }
+}
+
+async function deleteAll(req, res) {
+    console.log('transactions at deleteAll function:', TransactionModel.transactions)
+    try {
+        await TransactionModel.deleteMany({user: req.user})
+        res.redirect('/transactions')
     } catch(err) {
         console.log(err)
         res.send(err)
