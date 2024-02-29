@@ -7,16 +7,16 @@
     <title>Transactions</title>
 </head>
 <% if (user) { %>
-<nav class="navbar bg-dark w-auto p-3">
+<nav class="navbar bg-dark w-auto w-100 p-3">
     <h4 class="text-light">Hello <%= firstName %></h4>
     <h4 class="text-light"><%= currentDate %></h4>
     <h4><a href="/transactions/new">New Transaction</h4>
     <h4><a href="/">Logout</a></h4>
 </nav>
 <body class="container">
-    <div>
+    <div class="d-inline-flex p-2">
         <% if (transactions.length) { %>
-            <table class="table">
+            <table class="table w-25 float-start">
                 <thead>
                     <tr>
                         <th scope="col">Transaction</th>
@@ -52,6 +52,7 @@
                                     <% if (transaction.comments.length) { %>
                                         <% transaction.comments.forEach(comment => { %>
                                             <li class="dropdown-item"><%= comment.content %></li>
+                                            <li><hr class="dropdown-divider"></li>
                                         <% }) %>
                                     <% } else { %>
                                         <li class="dropdown-item">None</li>
@@ -75,7 +76,7 @@
             <% }) %>
                 </table>
                 <div>
-            <div class="card mx-auto rounded-3" style="width: 30rem">
+            <div class="card rounded-3 bg-info sticky-top" style="width: 20rem; margin-left: 2rem">
                 <div class="card-body">
                     <h2 class="card-title">Total: <%= totalAmount %></h2>
                     <p class="card-text">Total credits: <%= totalCredits %></p>
