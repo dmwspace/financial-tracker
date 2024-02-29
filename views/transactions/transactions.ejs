@@ -7,7 +7,7 @@
     <title>Transactions</title>
 </head>
 <% if (user) { %>
-<nav class="navbar bg-dark w-auto w-100 p-3">
+<nav class="navbar bg-dark w-auto w-100 p-3 sticky-top">
     <h4 class="text-light">Hello <%= firstName %></h4>
     <h4 class="text-light"><%= currentDate %></h4>
     <h4><a href="/transactions/new">New Transaction</h4>
@@ -76,7 +76,7 @@
             <% }) %>
                 </table>
                 <div>
-            <div class="card rounded-3 bg-info sticky-top" style="width: 20rem; margin-left: 2rem">
+            <div class="card rounded-3 bg-info" style="width: 20rem; margin-left: 2rem">
                 <div class="card-body">
                     <h2 class="card-title">Total: <%= totalAmount %></h2>
                     <p class="card-text">Total credits: <%= totalCredits %></p>
