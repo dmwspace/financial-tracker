@@ -41,13 +41,32 @@ async function create(req, res) {
 }
 
 async function index(req, res) {
-    console.log('req.user.name', req.user.name)
+    //console.log('req.user.name', req.user.name)
     try {
         const transactions = await TransactionModel.find({user: req.user});
         let firstName = getFirstName(req.user.name)
         let currentDate = getCurrentMonth()
-        console.log('currentDate in index function line 44', currentDate)
-        res.render("transactions/transactions", {transactions, firstName, currentDate})
+        console.log('transactions at index function', transactions)
+        let amount = 0
+        let credits = 0
+        let debits = 0
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        })
+        for (let transaction of transactions) {
+            if (transaction.type === 'Debit') {
+                debits += parseFloat(transaction.amount)
+                amount -= parseFloat(transaction.amount)
+            } else if (transaction.type === 'Credit') {
+                credits += parseFloat(transaction.amount)
+                amount += parseFloat(transaction.amount)
+            }    
+        }
+        let totalAmount = formatter.format(amount)
+        let totalDebits = formatter.format(debits)
+        let totalCredits = formatter.format(credits)
+        res.render("transactions/transactions", {transactions, firstName, currentDate, totalCredits, totalDebits, totalAmount})
     } catch(err) {
         console.log(err);
         res.send(err)

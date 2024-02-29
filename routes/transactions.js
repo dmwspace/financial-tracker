@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const passport = require('passport');
 const transactionsCtrl = require('../controllers/transactions')
+const isLoggedIn = require('../config/auth');
 
-router.get('/', transactionsCtrl.index)
+router.get('/', isLoggedIn, transactionsCtrl.index)
 // router.get('/', function(req, res){
 //     //console.log('*****', res)
 //     res.render('add')
