@@ -7,7 +7,7 @@ This is Transactions page when the user has logged in and hasn't entered any tra
 
 ![Transactions page](/imgs/1.png)
 
-Clicking the 'Add Transaction' link renders the Add A Transaction page:
+Clicking the 'New Transaction' link renders the Add A Transaction page:
 
 ![Add A Transaction page](/imgs/2.png)
 
@@ -19,7 +19,7 @@ The Transactions page with two more transactions added:
 
 ![2nd updated Transactions page](/imgs/4.png)
 
-Clicking the View dropdown lets one see comments for a specific transaction and it has a link to add a comment:
+Clicking the 'View' dropdown lets one see comments for a specific transaction and it has a link to add a comment:
 
 ![Clicking the View dropdown](/imgs/5.png)
 
@@ -53,8 +53,8 @@ Of course, clicking on the Delete button for one transaction will delete that tr
 - Bootstrap
 
 ## Getting Started
-The app is located [here] (https://magenta-rose-badger-tutu.cyclic.app)
-The Trello board used to plan this project is [here] (https://trello.com/b/g6f1pR50/financial-tracker)
+The app is located here: (https://magenta-rose-badger-tutu.cyclic.app)
+The Trello board used to plan this project is here: (https://trello.com/b/g6f1pR50/financial-tracker)
 
 ## Next Steps
 In the future, the app will include the ability to view the previous month's transactions by clicking a back arrow button. Users will also have the ability to have a transaction recur at a set amount of time (weekly, monthly, etc). Additionally, the app will be styled to be responsive to different monitor sizes.
