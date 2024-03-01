@@ -30,7 +30,6 @@
                     </tr>
                 </thead>
             <% transactions.forEach(transaction => { %>
-            <% let theDate = transaction.date.toLocaleDateString("en-US") %>
             <% const formatter = new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD'
@@ -39,7 +38,7 @@
                 <tbody>
                     <tr>
                         <td><%= transaction.name %></td>
-                        <td><%= theDate %></td>
+                        <td><%= transaction.date.toLocaleDateString("en-US") %></td>
                         <td><%= transaction.type %></td>
                         <td><%= transaction.category %></td>
                         <td><%= theAmount %></td>

@@ -28,6 +28,9 @@ function getFirstName(name) {
     return firstName
     }
 async function create(req, res) {
+    for (let key in req.body) {
+        if (req.body[key] === "") delete req.body[key];
+    }
     try {
         req.body.user = req.user
 		//req.body.userName = req.user.name
@@ -96,6 +99,9 @@ async function showUpdatePage(req, res) {
 }
 
 async function update(req, res) {
+    for (let key in req.body) {
+        if (req.body[key] === "") delete req.body[key];
+    }
     req.body.user = req.user
     console.log('update req.params.id', req.params.id)
     try {

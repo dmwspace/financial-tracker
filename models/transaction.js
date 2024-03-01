@@ -12,7 +12,8 @@ const transactionSchema = new Schema({
     name: String,
     date: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        required: true
     },
     type: {
         type: String,
@@ -22,7 +23,12 @@ const transactionSchema = new Schema({
         type: String,
         enum: ['Housing', 'Food', 'Bills', 'Other Debit', 'Paycheck', 'Other Credit']
     },
-    amount: Number,
+    amount: {
+        type: Number,
+        min: 0,
+        default: 0,
+        required: true
+    },
     comments: [commentSchema],
     user: {
         type: Schema.Types.ObjectId,
